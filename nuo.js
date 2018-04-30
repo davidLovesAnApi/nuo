@@ -57,5 +57,11 @@
     nuo.isFunction = function( funcToCheck )
     {
         return funcToCheck && {}.toString.call( funcToCheck ) === '[object Function]';
-    };	
+    };
+
+	//	Returns true for any string that can be parsed as a date object.
+    nuo.isDate = function( str )
+    {
+        return ( !isNaN( Date.parse( str ) ) );
+    };
 }());
