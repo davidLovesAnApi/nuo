@@ -39,4 +39,11 @@
 			console.log( nuo.logArray[i][0] + " " + nuo.logArray[i][1] );
 		};
 	};
+	
+	
+	//	A basic method that returns the callee documents name by splitting and popping path.
+	nuo.rtnCurrentDocumentName = function()
+	{
+	    return window.location.pathname.split('/').pop();
+	};
 }());
