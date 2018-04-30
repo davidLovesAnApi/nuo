@@ -64,4 +64,10 @@
     {
         return ( !isNaN( Date.parse( str ) ) );
     };
+	
+	//	When looking specifically for an object literal.
+    nuo.isObject = function( objToCheck )
+    {
+        return Object.prototype.toString.call( objToCheck ) === '[object Object]';
+    };
 }());
