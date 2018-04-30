@@ -86,4 +86,56 @@
 		//	This is very concise, but do I need to convert for url?
 		return (new Image()).src = strUrl +"?"+arrNameValue.join("&");
 	};
+	
+	
+	//	cookies can be very helpful to have. Here are some basic methods to support them.
+	//	Basic cookie operations; get, set and delete.
+
+	//	set a cookies name and and value.
+	nuo.setCookie = function( strName, scaValue )
+	{
+		nuo.log( "nuo.setCookie( strName, scaValue )" );
+		
+		//	no cookie name no cookie!
+		if ( typeof strName !== "string" ) return;
+		
+		// no value. Provide empty value, so that the cookie can still be set.
+        if ( scaValue === undefined ) scaValue = "";
+		
+		var expires;
+		//	A date function, returning a future date.
+		function rtnDate()
+		{
+			//  set or get a future date.
+            var d = new Date(),
+                m = d.getMonth(),
+                t = d.getDate();
+			
+			//	Assign new expiry date in the future.
+            d.setMonth( m+1, t );
+			return d;
+		};
+		
+		
+		//	conditionally set the expires date.
+		if ( arguments[2] )
+        {
+			if( nuo.isDate( arguments[2] ) ) 
+			{
+				expires = arguments[2];
+			}
+			else
+			{
+				expires = rtnDate();
+			}
+        }
+        else
+        {
+            expires = rtnDate();
+        }
+		
+		//   Actually sets the cookie name, value pair.
+        document.cookie = strName + "=" + scaValue + ";expires=" + expires.toUTCString()+ ";";
+		return;
+	};
 }());
