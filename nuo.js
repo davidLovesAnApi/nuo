@@ -162,4 +162,13 @@
 		document.cookie = strName + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
 		return;
 	};
+	
+	// 	A basic delayed function.
+	nuo.delayedFunc = function( func, delay )
+	{
+	    nuo.log("nuo.delayedFunc( func, delay )");
+		
+		setTimeout( func, delay );
+	    clearTimeout( func );
+	};
 }());
