@@ -46,4 +46,10 @@
 	{
 	    return window.location.pathname.split('/').pop();
 	};
+	
+	// As an array is an object, use this.
+    nuo.isArray = function( arrToCheck )
+    {
+        return arrToCheck.constructor === Array;
+    };	
 }());
