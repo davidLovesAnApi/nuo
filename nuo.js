@@ -70,4 +70,20 @@
     {
         return Object.prototype.toString.call( objToCheck ) === '[object Object]';
     };
+	
+	
+	//	Having a beacon is a greatway to async send data strings to the server
+	
+	//	Beacon for Async data send
+	nuo.beacon = function( strUrl, arrNameValue )
+	{
+		nuo.log("nuo.beacon(strUrl, arrNameValue)");
+		
+		//	Where relative uri, has not been added yet to nuo
+		if(typeof strUrl !== "string") throw "typeof strUrl !== string";
+		if(!nuo.isArray(arrNameValue)) throw "typeof arrNameValue !== array";
+		
+		//	This is very concise, but do I need to convert for url?
+		return (new Image()).src = strUrl +"?"+arrNameValue.join("&");
+	};
 }());
