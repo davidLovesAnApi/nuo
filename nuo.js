@@ -138,4 +138,19 @@
         document.cookie = strName + "=" + scaValue + ";expires=" + expires.toUTCString()+ ";";
 		return;
 	};
+	
+	//	retieve a cookies name value pair by it's name
+	nuo.getCookie = function( strName )
+	{
+		nuo.log( "nuo.getCookie( strName )" );
+		if(strName === undefined) return false;
+		
+        var value = document.cookie, 
+		    parts = value.split( strName + "=" );
+		
+		// returns a single item.
+        if ( parts.length == 2 ) return parts.pop().split( ";" ).shift();
+		
+        return false;
+	};
 }());
