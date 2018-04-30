@@ -51,5 +51,11 @@
     nuo.isArray = function( arrToCheck )
     {
         return arrToCheck.constructor === Array;
+    };
+	
+	// As a function is an object use this.
+    nuo.isFunction = function( funcToCheck )
+    {
+        return funcToCheck && {}.toString.call( funcToCheck ) === '[object Function]';
     };	
 }());
