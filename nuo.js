@@ -153,4 +153,13 @@
 		
         return false;
 	};
+	
+	//	delete a cookie by referencing its name and setting a utc to an old date.
+	nuo.deleteCookie = function( strName )
+	{
+		nuo.log( "nuo.deleteCookie( strName )" );
+		
+		document.cookie = strName + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+		return;
+	};
 }());
