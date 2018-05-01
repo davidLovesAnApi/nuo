@@ -205,4 +205,16 @@
 		for( ; i < l; i += 1 ) ( new Image() ).src = arrFileSrc[i];
 		return;
     };
+	
+	//	Naviagate to a new URL. assign/replace?! replace 
+	nuo.documentLoader = function( url )
+	{
+		nuo.log( "nuo.documentLoader( url )" );
+		if( "undefined" === typeof url || typeof url !== "string" ) return;
+		
+		//	requests a new url now! If second argument no back button
+		if( arguemnts[1] ) if( window.location.replace( url ) ) return window.location.replace( url );
+		if( window.location.assign( url ) ) return window.location.assign( url );
+		return;
+	};
 }());
