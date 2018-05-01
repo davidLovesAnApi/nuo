@@ -171,4 +171,22 @@
 		setTimeout( func, delay );
 	    clearTimeout( func );
 	};
+	
+	//	lazy loaded scripts that do not need to be loaded witin onload event. can be attached to events!
+	nuo.scriptLoader = function( strFileSrc )
+	{
+		nuo.log( "nuo.loadScript( trFileSrc )" );
+		
+		//	Silent return if not defined.
+		if( typeof strFileSrc !== "string" ) return;
+		
+		//	create and populate script tag.
+		var script = document.createElement("script");
+		script.type = "text/javascript";
+		script.src = strFileSrc;
+		
+		//   Script assigned to the head tag.
+		document.getElementsByTagName( "head" )[0].appendChild( script );
+		return;
+    };
 }());
