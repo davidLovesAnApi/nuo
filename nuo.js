@@ -228,4 +228,64 @@
 	    if( html.getBoundingClientRect() ) return html.getBoundingClientRect();
 		return false;
 	};
+	
+	//	general purpose timeoutid.
+	nuo.timeoutId = null;
+	
+	//	generous delay for handling resize events in a more efficient way.
+    nuo.resizeDelay = 60;
+	
+	//	informal space for business logic, concerning optional objects and methods.
+    nuo.init = function()
+    {
+        nuo.log( "nuo.init()" );
+		nuo.windowResized();
+    };
+	
+	//	Actual resized method of nuo.
+    nuo.windowResized = function()
+	{
+		nuo.ClientRect = nuo.rtnClientRect();
+		nuo.log( "nuo.windowResized() " + nuo.ClientRect.width );
+	};
+	
+	//	processing after the critical load of structure and assets.
+    nuo.windowLoad = function()
+    {
+        nuo.log( "nuo.windowLoad()" );
+		
+		//*
+		window.addEventListener("resize", function() {
+			clearTimeout(nuo.resizeId);
+			nuo.resizeId = setTimeout(nuo.windowResized, nuo.resizeDelay);
+		}, true);
+		//*/
+		
+	    //  Lastly...
+        window.removeEventListener( "load", nuo.windowOnload );
+    };
+	
+	
+	//	processing dependant on the DOM structure having been completed.
+    nuo.domContentLoaded = function()
+    {
+        nuo.log( "nuo.domContentLoaded()" );
+		
+		//  A nice place to have dynamic implementations of methods based on the environments capabilities!
+        nuo.init();
+		
+		
+	    //  Lastly remove event.
+	    document.removeEventListener( "DOMContentLoaded", nuo.domContentLoaded );
+    };
+	
+	
+	
+	//	initial assets loaded.
+    window.addEventListener( "load", nuo.windowLoad, true );
+	//	window is resized.
+	window.addEventListener("resize", nuo.windowResize, true);
+	//	Document markup structure is complete.
+	document.addEventListener( "DOMContentLoaded", nuo.domContentLoaded, true );
+	if(window.console) console.log("nuo.js Loaded.");
 }());
