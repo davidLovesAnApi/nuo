@@ -217,4 +217,15 @@
 		if( window.location.assign( url ) ) return window.location.assign( url );
 		return;
 	};
+	
+	//	Returns object with html dimentions.
+	nuo.rtnClientRect = function()
+	{
+		// Live access to the dom.
+		var html = document.getElementsByTagName( "html" )[0];
+		
+		//	If bounding client rectangle return it or return false.
+	    if( html.getBoundingClientRect() ) return html.getBoundingClientRect();
+		return false;
+	};
 }());
