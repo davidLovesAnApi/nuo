@@ -189,4 +189,20 @@
 		document.getElementsByTagName( "head" )[0].appendChild( script );
 		return;
     };
+	
+	//	an array of file names including extentions. and a single string path. Just an array of paths strings which include directories, file names and file extentions?
+	nuo.cacheLoader = function( arrFileSrc )
+    {
+		nuo.log( "nuo.cacheLoader( arrFileSrc )" );
+		
+		//	depenencies and declarations.
+	    if( !nuo.isArray( arrFileSrc ) ) throw "!nuo.isArray( arrFileSrc )";
+		
+	    var i = 0, l = arrFileSrc.length;
+		
+		//	loop through creating instances of img and store to memory.
+		//  This is when and where the actual image gets loaded.
+		for( ; i < l; i += 1 ) ( new Image() ).src = arrFileSrc[i];
+		return;
+    };
 }());
