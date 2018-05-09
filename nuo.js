@@ -40,6 +40,26 @@
 		};
 	};
 	
+	//	A method that accepts any number of literal objects as parameters, glues them together and returns the consolidated object.
+	nuo.mix = function()
+	{
+	    var arg = 0,
+		    len = arguments.length,
+		    prop,
+			child = {};
+		for( ; arg < len; arg += 1 )
+		{
+			for( prop in arguments[arg] )
+			{
+				if( arguments[arg].hasOwnProperty( prop ) )
+				{
+					child[prop] = arguments[arg][prop];
+				}
+			}		
+		}
+		return child;
+	};
+	
 	
 	//	A basic method that returns the callee documents name by splitting and popping path.
 	nuo.rtnCurrentDocumentName = function()
